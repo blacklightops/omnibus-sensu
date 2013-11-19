@@ -1,0 +1,7 @@
+*.gem
+.bundle
+vendor/bundle
+pkg/*
+.vagrant
+bin/*
+vendor/cookbooks
