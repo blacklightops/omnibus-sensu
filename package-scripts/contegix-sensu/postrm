@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+# Perform necessary sensu removal steps
+# after package is uninstalled.
+#
+
+prefix="contegix-"
+sensu_services="sensu-client sensu-service" # sensu-server sensu-api sensu-dashboard"
+
+# Disable and stop sensu services
+for service in $sensu_services; do
+	service="${prefix}${service}"
+	if [ -h /etc/init.d/${service} ] ; then
+		chkconfig ${service} off
+		chkconfig --del ${service}
+		/etc/init.d/${service} status || /etc/init.d/${service} stop
+		rm -f /etc/init.d/${service}
+	fi
+done
+
+# unlink logroate config
+[ -e /etc/logrotate.d/${prefix}sensu ] && rm -f /etc/logrotate.d/${prefix}sensu
+
+# Delete sensu files
+if [ -d "/opt/contegix/sensu" ]; then
+	rm -rf /opt/contegix/sensu
+fi
+
+# Delete sensu user
+if getent passwd ${prefix}sensu >/dev/null; then
+	userdel -f ${prefix}sensu
+fi
+
+# Delete sensu group
+if getent group ${prefix}sensu >/dev/null; then
+	groupdel -f ${prefix}sensu
+fi
+
+exit 0

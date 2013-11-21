@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# Perform necessary sensu setup steps
+# after package is installed.
+#
+
+PROGNAME=$(basename $0)
+
+function error_exit
+{
+  echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+  exit 1
+}
+
+prefix="contegix-"
+
+# Install package - add services and change permissions
+# On first install, register the init scripts but disable services.
+# User should choose the services they want to run after install
+
+# Install package - add user
+# Create sensu group
+if ! getent group ${prefix}sensu >/dev/null; then
+	groupadd -r ${prefix}sensu -g 391
+fi
+
+# Create sensu user
+if ! getent passwd ${prefix}sensu >/dev/null; then
+	useradd -r -u 391 -g ${prefix}sensu -d /opt/contegix/sensu \
+    		-s /bin/false -c "Sensu Monitoring Framework" ${prefix}sensu
+fi
+
+# link services into legacy init system
+sensu_services="sensu-client sensu-service" #sensu-server sensu-api sensu-dashboard"
+
+
+for service in $sensu_services; do
+	if [ ! -e /etc/init.d/${prefix}$service ] ; then 
+		ln -s /opt/contegix/puppet/etc/init.d/$service /etc/init.d/${prefix}${service}
+		chkconfig --add ${prefix}$service
+		chkconfig ${prefix}$service off
+	fi
+done
+
+# link logrotate configuration
+[ -h /etc/logrotate.d/${prefix}sensu ] || ln -s /opt/contegix/sensu/etc/logrotate.d/sensu /etc/logrotate.d/${prefix}sensu
+
+# Change permissions
+chown -R sensu:sensu /opt/contegix/sensu/etc/sensu
+chown sensu:sensu /opt/contegix/sensu/var/log/sensu
+chown sensu:sensu /opt/contegix/sensu/var/run
+chown sensu:sensu /opt/contegix/sensu/var/lock
+
+
+exit 0
