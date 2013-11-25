@@ -12,6 +12,7 @@
 # Description:    Sensu monitoring framework api
 ### END INIT INFO
 
-/etc/init.d/sensu-service api $1
+prefix="contegix-"
+/etc/init.d/${prefix}sensu-service api $1
 
 exit $?

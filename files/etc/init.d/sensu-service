@@ -14,21 +14,23 @@
 
 prog=sensu-$1
 
-EMBEDDED_RUBY=false
-CONFIG_FILE=/opt/contegix/sensu/etc/sensu/config.json
-CONFIG_DIR=/opt/contegix/sensu/etc/sensu/conf.d
-EXTENSION_DIR=/opt/contegix/sensu/etc/sensu/extensions
-PLUGINS_DIR=/opt/contegix/sensu/etc/sensu/plugins
-HANDLERS_DIR=/opt/contegix/sensu/etc/sensu/handlers
-LOG_DIR=/opt/contegix/sensu/var/log/sensu
+prefix="contegix-"
+install_dir="/opt/contegix/sensu"
+EMBEDDED_RUBY=true
+CONFIG_FILE=${install_dir}/etc/sensu/config.json
+CONFIG_DIR=${install_dir}/etc/sensu/conf.d
+EXTENSION_DIR=${install_dir}/etc/sensu/extensions
+PLUGINS_DIR=${install_dir}/etc/sensu/plugins
+HANDLERS_DIR=${install_dir}/etc/sensu/handlers
+LOG_DIR=${install_dir}/var/log/sensu
 LOG_LEVEL=info
-PID_DIR=/opt/contegix/sensu/var/run/sensu
-USER=sensu
+PID_DIR=${install_dir}/var/run/sensu
+USER=${prefix}sensu
 SERVICE_MAX_WAIT=10
 
-#if [ -f /etc/sysconfig/sensu ]; then
-#    . /etc/sysconfig/sensu
-#fi
+if [ -f ${install_dir}/etc/sysconfig/sensu ]; then
+    . ${install_dir}/etc/sysconfig/sensu
+fi
 
 system=unknown
 if [ -f /etc/redhat-release ]; then
@@ -69,7 +71,7 @@ fi
 if [ "$system" = "redhat" ]; then
     ## source platform specific external scripts
     . /etc/init.d/functions
-    [ -r /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+    [ -r ${install_dir}/etc/sysconfig/$prog ] && . ${install_dir}/etc/sysconfig/$prog
 
     ## set or override platform specific variables
     lockfile=${LOCKFILE-/opt/contegix/sensu/var/lock/subsys/$prog}
@@ -102,7 +104,7 @@ fi
 if [ "$system" = "debian" ]; then
     ## source platform specific external scripts
     . /lib/lsb/init-functions
-    [ -r /opt/contegix/sensu/etc/sysconfig/$prog ] && . /opt/contegix/sensu/etc/sysconfig/$prog
+    [ -r ${install_dir}/etc/sysconfig/$prog ] && . ${install_dir}/etc/sysconfig/$prog
 
     ## set or override platform specific variables
     lockfile=${LOCKFILE-/opt/contegix/sensu/var/lock/$prog}
@@ -122,7 +124,7 @@ fi
 if [ "$system" = "suse" ]; then
     ## source platform specific external scripts
     . /lib/lsb/init-functions
-    [ -r /opt/contegix/sensu/etc/sysconfig/$prog ] && . /opt/contegix/sensu/etc/sysconfig/$prog
+    [ -r ${install_dir}/etc/sysconfig/$prog ] && . ${install_dir}/etc/sysconfig/$prog
 
     ## set or override platform specific variables
     lockfile=${LOCKFILE-/opt/contegix/sensu/var/lock/subsys/$prog}
@@ -165,8 +167,8 @@ ensure_dir() {
 
 set_sensu_paths() {
     if [ "x$EMBEDDED_RUBY" = "xtrue" ]; then
-        export PATH=/opt/contegix/sensu/embedded/bin:$PATH:$PLUGINS_DIR:$HANDLERS_DIR
-        export GEM_PATH=/opt/contegix/sensu/embedded/lib/ruby/gems/1.9.1:$GEM_PATH
+        export PATH=${install_dir}/embedded/bin:$PATH:$PLUGINS_DIR:$HANDLERS_DIR
+        export GEM_PATH=${install_dir}/embedded/lib/ruby/gems/1.9.1:$GEM_PATH
     else
         export PATH=$PATH:$PLUGINS_DIR:$HANDLERS_DIR
     fi

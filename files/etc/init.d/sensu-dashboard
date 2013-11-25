@@ -12,6 +12,7 @@
 # Description:    Sensu monitoring framework dashboard
 ### END INIT INFO
 
+prefix="contegix-"
 /etc/init.d/sensu-service dashboard $1
 
 exit $?

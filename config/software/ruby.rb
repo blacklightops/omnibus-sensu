@@ -24,6 +24,7 @@ dependency "libedit"
 dependency "openssl"
 dependency "libyaml"
 dependency "libiconv"
+dependency "curl"
 dependency "gdbm" if (platform == "mac_os_x" or platform == "freebsd" or platform == "aix")
 dependency "libgcc" if (platform == "solaris2" and Omnibus.config.solaris_compiler == "gcc")
 

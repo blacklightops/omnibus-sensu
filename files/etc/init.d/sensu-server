@@ -12,6 +12,7 @@
 # Description:    Sensu monitoring framework server
 ### END INIT INFO
 
-/etc/init.d/sensu-service server $1
+prefix="contegix-"
+/etc/init.d/${prefix}sensu-service server $1
 
 exit $?
