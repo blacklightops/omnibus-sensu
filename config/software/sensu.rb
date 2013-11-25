@@ -15,6 +15,7 @@ build do
   gem "install sensu -n #{install_dir}/bin --no-rdoc --no-ri -v #{version}"
   gem "install sensu-cli -n #{install_dir}/bin --no-rdoc --no-ri"
   gem "install sensu-plugin -n #{install_dir}/bin --no-rdoc --no-ri"
+  gem "install sensu-dashboard -n #{install_dir}/bin --no-rdoc --no-ri"
   gem "install bunny --no-rdoc --no-ri" , :env => env
   gem "install net-ssh --no-rdoc --no-ri" , :env => env
   gem "install net-sftp --no-rdoc --no-ri" , :env => env
@@ -35,6 +36,35 @@ build do
   gem "install snmp --no-rdoc --no-ri" , :env => env
   gem "install curb --no-rdoc --no-ri" , :env => env
   gem "install mechanize --no-rdoc --no-ri" , :env => env
+  gem "install addressable --no-rdoc --no-ri" , :env => env
+  gem "install coffee-script --no-rdoc --no-ri" , :env => env
+  gem "install coffee-script-source --no-rdoc --no-ri" , :env => env
+  gem "install commonjs --no-rdoc --no-ri" , :env => env
+  gem "install cookiejar --no-rdoc --no-ri" , :env => env
+  gem "install em-http-request --no-rdoc --no-ri" , :env => env
+  gem "install em-socksify --no-rdoc --no-ri" , :env => env
+  gem "install execjs --no-rdoc --no-ri" , :env => env
+  gem "install handlebars_assets --no-rdoc --no-ri" , :env => env
+  gem "install hike --no-rdoc --no-ri" , :env => env
+  gem "install http_parser.rb --no-rdoc --no-ri" , :env => env
+  gem "install ipaddress --no-rdoc --no-ri" , :env => env
+  gem "install less --no-rdoc --no-ri" , :env => env
+  gem "install libv8 --no-rdoc --no-ri" , :env => env
+  gem "install mixlib-log --no-rdoc --no-ri" , :env => env
+  gem "install mixlib-shellout --no-rdoc --no-ri" , :env => env
+  gem "install ohai --no-rdoc --no-ri" , :env => env
+  gem "install psych --no-rdoc --no-ri" , :env => env
+  gem "install ref --no-rdoc --no-ri" , :env => env
+  gem "install sass --no-rdoc --no-ri" , :env => env
+  gem "install slim --no-rdoc --no-ri" , :env => env
+  gem "install sprockets --no-rdoc --no-ri" , :env => env
+  gem "install systemu --no-rdoc --no-ri" , :env => env
+  gem "install temple --no-rdoc --no-ri" , :env => env
+  gem "install test-unit --no-rdoc --no-ri" , :env => env
+  gem "install therubyracer --no-rdoc --no-ri" , :env => env
+  gem "install yajl-ruby --no-rdoc --no-ri" , :env => env
+  gem "install yui-compressor --no-rdoc --no-ri" , :env => env
+
   # remove documentation
   command "rm -rf #{install_dir}/embedded/docs"
   command "rm -rf #{install_dir}/embedded/share/man"
