@@ -7,7 +7,7 @@ replaces        "contegix-sensu"
 install_path    "/opt/contegix/sensu"
 #build_version   Omnibus::BuildVersion.new.semver
 build_version   "0.12.1"
-build_iteration 12
+build_iteration 13
 
 # creates required build directories
 dependency "preparation"

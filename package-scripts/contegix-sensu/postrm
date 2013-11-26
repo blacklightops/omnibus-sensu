@@ -6,15 +6,34 @@
 
 prefix="contegix-"
 install_dir="/opt/contegix/sensu"
+sensu_services="sensu-client" # sensu-service sensu-server sensu-api sensu-dashboard"
 
-# Delete sensu user
-if getent passwd ${prefix}sensu >/dev/null; then
-	userdel -f ${prefix}sensu
+#upgrade
+if [ "${1}" -ge "2" ] ; then
+
+	for service in $sensu_services; do
+		service="${prefix}${service}"
+		if [ -h /etc/init.d/${service} ] ; then
+			/etc/init.d/${service} restart
+		fi
+	done
+
+
 fi
 
-# Delete sensu group
-if getent group ${prefix}sensu >/dev/null; then
-	groupdel -f ${prefix}sensu
-fi
+# uninstall
+if [ "${1}" -eq "0" ] ; then
+
+	# Delete sensu user
+	if getent passwd ${prefix}sensu >/dev/null; then
+		userdel -f ${prefix}sensu
+	fi
+
+	# Delete sensu group
+	if getent group ${prefix}sensu >/dev/null; then
+		groupdel -f ${prefix}sensu
+	fi
+
+fi 
 
 exit 0

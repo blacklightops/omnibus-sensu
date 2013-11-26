@@ -8,18 +8,25 @@ prefix="contegix-"
 install_dir="/opt/contegix/sensu"
 sensu_services="sensu-client sensu-service" # sensu-server sensu-api sensu-dashboard"
 
-# Disable and stop sensu services
-for service in $sensu_services; do
-        service="${prefix}${service}"
-        if [ -h /etc/init.d/${service} ] ; then
-                chkconfig ${service} off
-                chkconfig --del ${service}
-		/etc/init.d/${service} status 2>&1 > /dev/null && /etc/init.d/${service} stop
-                rm -f /etc/init.d/${service}
-        fi
-done
+# upgrade
 
-# unlink logroate config
-[ -e /etc/logrotate.d/${prefix}sensu ] && rm -f /etc/logrotate.d/${prefix}sensu
+# uninstall
+if [ "${1}" -eq "0" ] ; then
+
+	# Disable and stop sensu services
+	for service in $sensu_services; do
+		service="${prefix}${service}"
+		if [ -h /etc/init.d/${service} ] ; then
+			chkconfig ${service} off
+			chkconfig --del ${service}
+			/etc/init.d/${service} status 2>&1 > /dev/null && /etc/init.d/${service} stop
+			rm -f /etc/init.d/${service}
+		fi
+	done
+
+	# unlink logroate config
+	[ -e /etc/logrotate.d/${prefix}sensu ] && rm -f /etc/logrotate.d/${prefix}sensu
+
+fi 
 
 exit 0

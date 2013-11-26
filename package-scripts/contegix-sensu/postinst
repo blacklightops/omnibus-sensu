@@ -14,6 +14,7 @@ function error_exit
 
 prefix="contegix-"
 install_dir="/opt/contegix/sensu"
+sensu_services="sensu-client sensu-service" #sensu-server sensu-api sensu-dashboard"
 
 # Install package - add services and change permissions
 # On first install, register the init scripts but disable services.
@@ -30,10 +31,6 @@ if ! getent passwd ${prefix}sensu >/dev/null; then
 	useradd -r -u 391 -g ${prefix}sensu -d ${install_dir} \
     		-s /bin/bash -c "Sensu Monitoring Framework" ${prefix}sensu
 fi
-
-# link services into legacy init system
-sensu_services="sensu-client sensu-service" #sensu-server sensu-api sensu-dashboard"
-
 
 for service in $sensu_services; do
 	if [ ! -e /etc/init.d/${prefix}$service ] ; then 
