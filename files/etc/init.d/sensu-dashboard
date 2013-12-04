@@ -13,6 +13,6 @@
 ### END INIT INFO
 
 prefix="contegix-"
-/etc/init.d/sensu-service dashboard $1
+/etc/init.d/${prefix}sensu-service dashboard $1
 
 exit $?
