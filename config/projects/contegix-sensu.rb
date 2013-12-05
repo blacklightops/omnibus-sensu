@@ -21,5 +21,8 @@ dependency "ubersmithrb"
 # version manifest file
 dependency "version-manifest"
 
+# config files
+config_file "#{install_base}/etc/sysconfig/sensu"
+
 exclude "\.git*"
 exclude "bundler\/git"
