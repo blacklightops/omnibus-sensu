@@ -70,7 +70,10 @@ build do
 #		"--with-sys-contact=noreply@contegix.mgmt",
 #		"--with-sys-location=contegix",
 #		"--with-logfile=#{install_dir/var/log/snmpd/snmpd.log}"].join(" ") , :env => configure_env
-  command "./configure --prefix=#{install_dir}/embedded --with-defaults --disable-embedded-perl --disable-snmptrapd-subagent " , :env => configure_env
+  command ["./configure --prefix=#{install_dir}/embedded --with-defaults",
+		"--disable-embedded-perl",
+		"--disable-snmptrapd-subagent",
+		"--without-perl-modules"].join(" ") , :env => configure_env
   command "make -j #{max_build_jobs}" , :env => configure_env
   command "make -j #{max_build_jobs} installlibs"
   command "make -j #{max_build_jobs} installheaders"
