@@ -71,9 +71,9 @@ build do
   command "make -j #{max_build_jobs} install"
 
   # force libs and include locations
-  command "[ -d #{install_dir}/embedded/lib/libffi-#{version}/include ] && rsync -a #{install_dir}/embedded/lib/libffi-#{version}/include/ #{install_dir}/embedded/include/"
+  command "[ ! -d #{install_dir}/embedded/lib/libffi-#{version}/include ] || rsync -a #{install_dir}/embedded/lib/libffi-#{version}/include/ #{install_dir}/embedded/include/"
   command "rm -rf #{install_dir}/embedded/lib/libffi-#{version}/include"
   command "rmdir #{install_dir}/embedded/lib/libffi-#{version}"
-  command "[ -d #{install_dir}/embedded/lib64 ] && rsync -a #{install_dir}/embedded/lib64/ #{install_dir}/embedded/lib/"
+  command "[ ! -d #{install_dir}/embedded/lib64 ] || rsync -a #{install_dir}/embedded/lib64/ #{install_dir}/embedded/lib/"
   command "rm -rf #{install_dir}/embedded/lib64/"
 end
