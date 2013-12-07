@@ -23,6 +23,7 @@ dependencies ["ruby", "rubygems", "libxml2", "libxslt", "libiconv"]
 env = { "PKG_CONFIG_PATH" => "#{install_dir}/embedded/lib/pkgconfig" }
 
 build do
+  command "sudo yum remove zlib-devel -y"
   gem ["install",
        "nokogiri",
        "-v #{version}",
