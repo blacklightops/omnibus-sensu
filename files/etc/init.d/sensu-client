@@ -12,7 +12,7 @@
 # Description:    Sensu monitoring framework client
 ### END INIT INFO
 
-prefix="contegix-"
+prefix="blacklight-"
 /etc/init.d/${prefix}sensu-service client $1
 
 exit $?

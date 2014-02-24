@@ -1,4 +1,4 @@
-/opt/contegix/sensu/var/log/sensu/sensu-client.log {
+/opt/blacklight/sensu/var/log/sensu/sensu-client.log {
     rotate 7
     daily
     missingok
@@ -11,7 +11,7 @@
     endscript
 }
 
-/opt/contegix/sensu/var/log/sensu/sensu-server.log {
+/opt/blacklight/sensu/var/log/sensu/sensu-server.log {
     rotate 7
     daily
     missingok
@@ -24,7 +24,7 @@
     endscript
 }
 
-/opt/contegix/sensu/var/log/sensu/sensu-api.log {
+/opt/blacklight/sensu/var/log/sensu/sensu-api.log {
     rotate 7
     daily
     missingok
@@ -37,7 +37,7 @@
     endscript
 }
 
-/opt/contegix/sensu/var/log/sensu/sensu-dashboard.log {
+/opt/blacklight/sensu/var/log/sensu/sensu-dashboard.log {
     rotate 7
     daily
     missingok

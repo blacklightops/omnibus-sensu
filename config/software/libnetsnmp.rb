@@ -67,8 +67,8 @@ configure_env =
 build do
 #  command ["./configure --prefix=#{install_dir}/embedded",
 #		"--with-default-snmp-version=3",
-#		"--with-sys-contact=noreply@contegix.mgmt",
-#		"--with-sys-location=contegix",
+#		"--with-sys-contact=noreply@blacklightops.com",
+#		"--with-sys-location=blacklight",
 #		"--with-logfile=#{install_dir/var/log/snmpd/snmpd.log}"].join(" ") , :env => configure_env
   command ["./configure --prefix=#{install_dir}/embedded --with-defaults",
 		"--disable-embedded-perl",

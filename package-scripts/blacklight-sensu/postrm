@@ -4,8 +4,8 @@
 # after package is uninstalled.
 #
 
-prefix="contegix-"
-install_dir="/opt/contegix/sensu"
+prefix="blacklight-"
+install_dir="/opt/blacklight/sensu"
 sensu_services="sensu-client" # sensu-service sensu-server sensu-api sensu-dashboard"
 
 #upgrade

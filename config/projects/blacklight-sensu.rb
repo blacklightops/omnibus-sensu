@@ -1,10 +1,10 @@
 
-name "contegix-sensu"
-maintainer "Contegix LLC"
-homepage "https://www.contegix.com"
+name "blacklight-sensu"
+maintainer "Blacklight Ops, Inc."
+homepage "https://www.blacklightops.com"
 
-replaces        "contegix-sensu"
-install_path    "/opt/contegix/sensu"
+replaces        "blacklight-sensu"
+install_path    "/opt/blacklight/sensu"
 #build_version   Omnibus::BuildVersion.new.semver
 build_version   "0.12.1"
 build_iteration 14

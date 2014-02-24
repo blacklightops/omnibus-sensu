@@ -14,8 +14,8 @@
 
 prog=sensu-$1
 
-prefix="contegix-"
-install_dir="/opt/contegix/sensu"
+prefix="blacklight-"
+install_dir="/opt/blacklight/sensu"
 EMBEDDED_RUBY=true
 CONFIG_FILE=${install_dir}/etc/sensu/config.json
 CONFIG_DIR=${install_dir}/etc/sensu/conf.d
@@ -74,7 +74,7 @@ if [ "$system" = "redhat" ]; then
     [ -r ${install_dir}/etc/sysconfig/$prog ] && . ${install_dir}/etc/sysconfig/$prog
 
     ## set or override platform specific variables
-    lockfile=${LOCKFILE-/opt/contegix/sensu/var/lock/subsys/$prog}
+    lockfile=${LOCKFILE-/opt/blacklight/sensu/var/lock/subsys/$prog}
 
     ## set or override platform specific functions
     start_daemon() {
@@ -107,7 +107,7 @@ if [ "$system" = "debian" ]; then
     [ -r ${install_dir}/etc/sysconfig/$prog ] && . ${install_dir}/etc/sysconfig/$prog
 
     ## set or override platform specific variables
-    lockfile=${LOCKFILE-/opt/contegix/sensu/var/lock/$prog}
+    lockfile=${LOCKFILE-/opt/blacklight/sensu/var/lock/$prog}
 
     ## set or override platform specific functions
     start_daemon() {
@@ -127,7 +127,7 @@ if [ "$system" = "suse" ]; then
     [ -r ${install_dir}/etc/sysconfig/$prog ] && . ${install_dir}/etc/sysconfig/$prog
 
     ## set or override platform specific variables
-    lockfile=${LOCKFILE-/opt/contegix/sensu/var/lock/subsys/$prog}
+    lockfile=${LOCKFILE-/opt/blacklight/sensu/var/lock/subsys/$prog}
 
     ## set or override platform specific functions
     start_daemon() {
@@ -148,9 +148,9 @@ if [ "$system" = "suse" ]; then
 fi
 # TODO: support other platforms in the future: gentoo, arch, slackware, etc
 
-cd /opt/contegix/sensu
+cd /opt/blacklight/sensu
 
-exec=/opt/contegix/sensu/bin/$prog
+exec=/opt/blacklight/sensu/bin/$prog
 
 pidfile=$PID_DIR/$prog.pid
 logfile=$LOG_DIR/$prog.log

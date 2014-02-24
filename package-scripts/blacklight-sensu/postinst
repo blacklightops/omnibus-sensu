@@ -12,8 +12,8 @@ function error_exit
   exit 1
 }
 
-prefix="contegix-"
-install_dir="/opt/contegix/sensu"
+prefix="blacklight-"
+install_dir="/opt/blacklight/sensu"
 sensu_services="sensu-client sensu-service" #sensu-server sensu-api sensu-dashboard"
 
 # Install package - add services and change permissions
