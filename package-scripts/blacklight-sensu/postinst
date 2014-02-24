@@ -29,11 +29,11 @@ fi
 # Create sensu user
 if ! getent passwd ${prefix}sensu >/dev/null; then
 	useradd -r -u 391 -g ${prefix}sensu -d ${install_dir} \
-    		-s /bin/bash -c "Sensu Monitoring Framework" ${prefix}sensu
+		-s /bin/bash -c "Sensu Monitoring Framework" ${prefix}sensu
 fi
 
 for service in $sensu_services; do
-	if [ ! -e /etc/init.d/${prefix}$service ] ; then 
+	if [ ! -e /etc/init.d/${prefix}$service ] ; then
 		ln -s ${install_dir}/etc/init.d/$service /etc/init.d/${prefix}${service}
 		chkconfig --add ${prefix}$service
 		chkconfig ${prefix}$service off
