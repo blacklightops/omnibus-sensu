@@ -1,5 +1,5 @@
 name "sensu"
-version "0.12.1"
+version "0.12.6"
 
 dependency "ruby"
 dependency "rubygems"
