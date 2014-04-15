@@ -39,10 +39,16 @@ Vagrant.configure("2") do |config|
     c.vm.box_url = "http://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4-i386_chef-11.4.4.box"
   end
 
-  config.vm.define 'ubuntu-12.04' do |c|
+  config.vm.define 'ubuntu-12.04_64' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
     c.vm.box = "canonical-ubuntu-12.04"
     c.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  end
+
+  config.vm.define 'ubuntu-14.04_64' do |c|
+    c.berkshelf.berksfile_path = "./Berksfile"
+    c.vm.box = "canonical-ubuntu-12.04"
+    c.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   end
 
   config.vm.provider :virtualbox do |vb|
