@@ -22,7 +22,30 @@ build do
             "-Dprefix=#{install_dir}/embedded",
             "-Duseshrplib", ## Compile shared libperl
             "-Dusethreads" ## Compile ithread support
+	    "-Dnoextensions='DB_File GDBM_File NDBM_File ODBM_File'"
            ].join(" "), :env => env
   command "make -j #{max_build_jobs}"
   command "make install", :env => env
+
+  # Ensure we have a sane omnibus-friendly CPAN config. This should be passed
+  # to cpan any commands with the `-j` option.
+  omnibus_cpan_home = File.join(cache_dir, 'cpan')
+  command "mkdir -p #{omnibus_cpan_home}", :env => env
+  block do
+    open("#{omnibus_cpan_home}/OmnibusConfig.pm", "w") do |file|
+      file.print <<-EOH
+
+$CPAN::Config = {
+'build_dir' => q[#{omnibus_cpan_home}/build],
+'cpan_home' => q[#{omnibus_cpan_home}],
+'histfile' => q[#{omnibus_cpan_home}/histfile],
+'keep_source_where' => q[#{omnibus_cpan_home}/sources],
+'prefs_dir' => q[#{omnibus_cpan_home}/prefs],
+'urllist' => [q[http://cpan.llarian.net/], q[http://cpan.mirror.vexxhost.com/], q[http://noodle.portalus.net/CPAN/]],
+};
+1;
+__END__
+EOH
+    end
+  end
 end
