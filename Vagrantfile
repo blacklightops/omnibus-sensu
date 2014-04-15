@@ -39,18 +39,6 @@ Vagrant.configure("2") do |config|
     c.vm.box_url = "http://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4-i386_chef-11.4.4.box"
   end
 
-  config.vm.define 'ubuntu-10.04' do |c|
-    c.berkshelf.berksfile_path = "./Berksfile"
-    c.vm.box = "opscode-ubuntu-10.04"
-    c.vm.box_url = "http://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_chef-11.2.0.box"
-  end
-
-  config.vm.define 'ubuntu-11.04' do |c|
-    c.berkshelf.berksfile_path = "./Berksfile"
-    c.vm.box = "opscode-ubuntu-11.04"
-    c.vm.box_url = "http://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-11.04.box"
-  end
-
   config.vm.define 'ubuntu-12.04' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
     c.vm.box = "canonical-ubuntu-12.04"
