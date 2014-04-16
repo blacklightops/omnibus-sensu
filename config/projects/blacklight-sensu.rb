@@ -6,8 +6,8 @@ homepage "https://www.blacklightops.com"
 replaces        "blacklight-sensu"
 install_path    "/opt/blacklight/sensu"
 #build_version   Omnibus::BuildVersion.new.semver
-build_version   "0.12.1"
-build_iteration 14
+build_version   "0.12.6"
+build_iteration 1
 
 # creates required build directories
 dependency "preparation"
