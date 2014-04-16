@@ -77,5 +77,5 @@ build do
   command "rsync -a #{Omnibus.project_root}/files/ #{install_dir}/"
 
   # apply patch for Sensu PR 697
-  patch :source => "sensu-00.patch" , :plevel => 0, :target => "./embedded/lib/ruby/gems/1.9.1/gems/sensu-#{version}"
+  command "patch -d #{install_dir}/embedded/lib/ruby/gems/1.9.1/gems/sensu-#{version} -p0 -i #{Omnibus.project_root}/config/patches/sensu/sensu-00.patch"
 end
