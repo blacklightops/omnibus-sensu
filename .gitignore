@@ -1,4 +1,5 @@
 *.gem
+*.lock
 .bundle
 vendor/bundle
 pkg/*
