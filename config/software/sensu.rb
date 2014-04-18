@@ -78,4 +78,6 @@ build do
 
   # apply patch for Sensu PR 697
   command "patch -d #{install_dir}/embedded/lib/ruby/gems/1.9.1/gems/sensu-#{version} -p0 -i #{Omnibus.project_root}/config/patches/sensu/sensu-00.patch"
+  # apply patch for Contegix/omninbus-sensu
+  command "patch -d #{install_dir}/embedded/lib/ruby/gems/1.9.1/gems/sensu-#{version} -p1 -i #{Omnibus.project_root}/config/patches/sensu/sensu-01.patch"
 end
